@@ -3,6 +3,8 @@ import { ApiService } from '../services/api/api.service';
 import {IDetail, Item} from "../models/item.model";
 import {Observable} from "rxjs";
 import {ItemsService} from "../services/items/items.service";
+import {ModalController} from "@ionic/angular";
+import {SettingsPage} from "../settings/settings/settings.page";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -10,26 +12,37 @@ import {ItemsService} from "../services/items/items.service";
 })
 export class Tab1Page {
   constructor(private apiService: ApiService,
-              private itemsService: ItemsService) {
+              private itemsService: ItemsService,
+              private modalCtrl: ModalController,) {
     this.initItems()
   }
 
   itemSet$: Observable<Item>[] = [];
 
-  getApiInfo(){
-    this.itemSet$.push(this.apiService.getItemById('98a530af-0920-47b2-b355-9df8f33e72b0'));
-  }
-//this.item$ = this.apiService.getItemById('98a530af-0920-47b2-b355-9df8f33e72b0');
   openDetail(itemDetail: IDetail) {
     this.itemsService.detail = itemDetail;
+  }
+
+  openSettings(){
+    this.openModal();
+  }
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: SettingsPage,
+    });
+    await modal.present();
+
+    await modal.onWillDismiss();
+    this.initItems();
   }
 
   private initItems(){
     this.itemsService.items$.subscribe(items => {
       this.itemSet$ = [];
       items.forEach(item => {
-        if (item.data) {
-          this.itemSet$.push(this.apiService.getItemById(item.data.itemId));
+        if (item.homepage) {
+          this.itemSet$.push(this.apiService.getItemById(item.itemId));
         }
       });
     });

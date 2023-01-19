@@ -25,4 +25,12 @@ export class DetailPage implements OnInit {
     }
   }
 
+  printCost(cost : number) : string{
+    if (cost != 0) {
+      return `Cost: ${cost} VBucks`;
+    } else {
+      return "No cost yet announced.";
+    }
+  }
+
 }
