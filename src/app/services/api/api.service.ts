@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Item} from "../../models/item.model";
 import {Observable} from "rxjs";
+import {User} from "../../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,12 @@ export class ApiService {
       .set('useQueryString', 'true');
     const url = `https://fortnite1.p.rapidapi.com/item/get?id=${id}`;
     return this.http.get<Item>(url, {'headers' : headers});
+  }
+
+  getUserById(accountId : string) : Observable<User>{
+    let headers = new HttpHeaders().set('Authorization', 'd1727549-11b2-4691-8f00-d60a70315397');
+    const url = `https://fortnite-api.com/v2/stats/br/v2/${accountId}`
+    return this.http.get<User>(url, {'headers' : headers});
   }
 
 }

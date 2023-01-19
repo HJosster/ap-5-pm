@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {ItemsService} from "../services/items/items.service";
 import {ModalController} from "@ionic/angular";
 import {SettingsPage} from "../settings/settings/settings.page";
+import {User} from "../models/user.model";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -14,13 +15,25 @@ export class Tab1Page {
   constructor(private apiService: ApiService,
               private itemsService: ItemsService,
               private modalCtrl: ModalController,) {
-    this.initItems()
+    this.initItems();
+    this.addUser();
   }
 
   itemSet$: Observable<Item>[] = [];
+  user$: Observable<User>[] = [];
 
   openDetail(itemDetail: IDetail) {
     this.itemsService.detail = itemDetail;
+  }
+
+  //TODO: Finish user implementation.
+  addUser(){
+    this.user$.push(this.apiService.getUserById('cf625765cd654d18bc483f6583b633fe'));
+    this.user$.forEach(value => {
+      value.forEach(value1 => {
+        console.log(value1.data);
+      });
+    });
   }
 
   openSettings(){
