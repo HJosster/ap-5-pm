@@ -13,5 +13,52 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-button (click)="getApiInfo()"></ion-button>
+
+  <!-- Loop of observable array -->
+  <ng-container *ngFor="let value$ of itemSet$">
+    <!-- card component with weather from API, open detail actions -->
+    <ion-card *ngIf="value$ | async; let item" routerLink="/detail" (click)="openDetail(item.data.item)">
+      <!-- card show only if data (observable) downloaded from server | async in if -->
+      <!-- let weather = data injected from if async state -->
+      <ion-card-header>
+        <ion-card-subtitle>Item</ion-card-subtitle>
+        <!-- show data -->
+        <ion-card-title>
+          <ion-row class="ion-no-padding ion-align-items-center">
+            <ion-col class="ion-no-padding">
+              {{item.data.item.name}}
+            </ion-col>
+            <ion-col class="ion-no-padding ion-text-right">
+              <ion-chip>
+                <ion-label>Type: {{item.data.item.type}}</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-row>
+        </ion-card-title>
+      </ion-card-header>
+
+      <!-- set to no-padding for consistent UI/UX -->
+      <ion-card-content>
+        <!--
+        <ion-row class="ion-no-padding">
+          <ion-col>
+            <img [alt]="weather.weather[0].description" [title]="weather.weather[0].description"
+                 [src]="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'">
+          </ion-col>
+          <ion-col class="ion-no-padding ion-text-right">
+            <ion-chip color="primary">
+              <ion-label>Min: {{weather.main.temp_min}} ℃</ion-label>
+            </ion-chip>
+            <ion-chip color="danger">
+              <ion-label>Max: {{weather.main.temp_max}} ℃</ion-label>
+            </ion-chip>
+          </ion-col>
+        </ion-row>
+        -->
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>

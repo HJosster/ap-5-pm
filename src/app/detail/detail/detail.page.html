@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{item.name}}</ion-title>
+    <ion-avatar slot="end">
+      <img [src]="item.images.icon" alt="icon">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-text>{{item.description}}
+    </ion-text>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-icon slot="start" name="library-outline"></ion-icon>
+      <ion-label>
+        Type: {{item.type}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="videocam-outline"></ion-icon>
+      <ion-label>
+        From series: {{item.series}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="diamond-outline"></ion-icon>
+      <ion-label>
+        Rarity: {{item.rarity}}
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon slot="start" name="wallet-outline"></ion-icon>
+      <ion-label>
+        Cost: {{item.cost}}
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-row class="ion-no-padding">
+    <ion-col class="ion-no-padding">
+      <ion-card color="warning">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon slot="start" name="time-outline"></ion-icon>
+              {{isUpcoming(item.upcoming)}}
+          </ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <div class="ion-padding">
+    <ion-img src="{{item.images.background}}"></ion-img>
+  </div>
+
+</ion-content>
