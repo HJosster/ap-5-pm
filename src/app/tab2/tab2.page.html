@@ -13,5 +13,31 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-item>
+    <ion-label position="stacked">Input your Fortnite user ID</ion-label>
+    <ion-input [(ngModel)]="UserIdInput" [clearInput]="true" placeholder="Enter ID..." (keydown.enter)="onEnter()"></ion-input>
+  </ion-item>
+
+  <!-- Loop of observable array -->
+  <ng-container *ngFor="let item$ of user$">
+    <ion-card *ngIf="item$ | async; let value" routerLink="/detail" (click)="openDetail()">
+      <ion-item>
+        <ion-label>
+          <h1>{{value.data.account.name}}</h1>
+          <p>id: {{value.data.account.id}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-title>Hotel Panama Garden</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis mollis ligula sed ultrices.
+      </ion-card-content>
+      <ion-footer>
+        <ion-row>
+        </ion-row>
+      </ion-footer>
+    </ion-card>
+  </ng-container>
+
 </ion-content>
