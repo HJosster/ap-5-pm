@@ -19,8 +19,4 @@ export class Tab2Page {
     this.user$.push(this.apiService.getUserById(this.UserIdInput));
     this.UserIdInput = '';
   }
-
-  openDetail(){
-
-  }
 }

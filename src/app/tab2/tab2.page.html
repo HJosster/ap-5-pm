@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      User Statistics
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -20,24 +20,97 @@
 
   <!-- Loop of observable array -->
   <ng-container *ngFor="let item$ of user$">
-    <ion-card *ngIf="item$ | async; let value" routerLink="/detail" (click)="openDetail()">
-      <ion-item>
+    <ion-card *ngIf="item$ | async; let value">
+      <ion-item color="light">
         <ion-label>
-          <h1>{{value.data.account.name}}</h1>
+          <h1>{{value.data.account.name.toUpperCase()}}</h1>
           <p>id: {{value.data.account.id}}</p>
         </ion-label>
       </ion-item>
-      <ion-card-header>
-        <ion-card-title>Hotel Panama Garden</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis mollis ligula sed ultrices.
-      </ion-card-content>
+      <ion-item color="danger">
+        <ion-label class="ion-text-center">
+          <h1>BATTLE STATISTICS</h1>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Kills: {{value.data.stats.all.overall.kills}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Deaths: {{value.data.stats.all.overall.deaths}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          KD: {{value.data.stats.all.overall.kd}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Average kills per match: {{value.data.stats.all.overall.killsPerMatch}}
+        </ion-label>
+      </ion-item>
+      <ion-item color="success">
+        <ion-label class="ion-text-center">
+          <h1>MATCH STATISTICS</h1>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Matches played: {{value.data.stats.all.overall.matches}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Minutes played: {{value.data.stats.all.overall.minutesPlayed}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Matches won: {{value.data.stats.all.overall.wins}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Winrate: {{value.data.stats.all.overall.winRate}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Top 5 achieved: {{value.data.stats.all.overall.top5}} times
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+         Top 12 achieved: {{value.data.stats.all.overall.top12}} times
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Outlived: {{value.data.stats.all.overall.playerOutlived}} players
+        </ion-label>
+      </ion-item>
+      <ion-item color="warning">
+        <ion-label class="ion-text-center">
+          <h1>Battlepass</h1>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Level: {{value.data.battlePass.level}}
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Progress: {{value.data.battlePass.progress}}
+        </ion-label>
+      </ion-item>
       <ion-footer>
         <ion-row>
         </ion-row>
       </ion-footer>
     </ion-card>
   </ng-container>
-
 </ion-content>
