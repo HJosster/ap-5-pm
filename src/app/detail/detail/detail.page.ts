@@ -17,6 +17,7 @@ export class DetailPage implements OnInit {
     this.item = this.itemsService.detail;
   }
 
+  // Pokud predmet jeste nebyl vydan, vypise jiny text
   isUpcoming(upcoming : boolean) : string{
     if(upcoming){
       return "This item has not been released yet!";
@@ -25,6 +26,7 @@ export class DetailPage implements OnInit {
     }
   }
 
+  // Pokud je cena 0, nastavi ji jako jeste neoznamenou
   printCost(cost : number) : string{
     if (cost != 0) {
       return `Cost: ${cost} VBucks`;

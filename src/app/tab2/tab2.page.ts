@@ -15,6 +15,7 @@ export class Tab2Page {
 
   UserIdInput : string = '';
 
+  // Po zadani id vyprezentuje data o hraci
   onEnter(){
     this.user$.push(this.apiService.getUserById(this.UserIdInput));
     this.UserIdInput = '';

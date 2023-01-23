@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "AP5PM",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "io.joe.ap5pm",
+  "appName": "AP5PM",
+  "webDir": "www",
+  "bundledWebRuntime": false
 }

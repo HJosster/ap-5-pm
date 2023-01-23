@@ -58,6 +58,8 @@ export class ItemsService {
       homepage: true
     }
   ];
+
+  // Nacte local storage, pokud nejaky existuje
   constructor(private storageService: StorageService) {
     this.storageService.getData('items').then(items => {
       if (!items) {
@@ -73,6 +75,7 @@ export class ItemsService {
     return this.privateItemSubject.asObservable();
   }
 
+  // Nastavovani z settings, ktere veci se maji zobrazovat
   async setHome(index: number, active: boolean) {
     this.privateItems[index].homepage = active;
     await this.storageService.saveData('items', this.privateItems);

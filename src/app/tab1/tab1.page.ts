@@ -20,10 +20,12 @@ export class Tab1Page {
 
   itemSet$: Observable<Item>[] = [];
 
+  // Pri kliknuti na item otevre jeho detail.
   openDetail(itemDetail: IDetail) {
     this.itemsService.detail = itemDetail;
   }
 
+  // Pri kliknuti na settings ikonku otevre modal settings.
   openSettings(){
     this.openModal();
   }
@@ -38,6 +40,7 @@ export class Tab1Page {
     this.initItems();
   }
 
+  // Naplneni itemu pomoci veci ulozenych v local storage
   private initItems(){
     this.itemsService.items$.subscribe(items => {
       this.itemSet$ = [];
